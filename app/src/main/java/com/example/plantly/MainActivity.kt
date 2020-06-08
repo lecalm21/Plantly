@@ -14,6 +14,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
+        rvPlantsList.layoutManager = LinearLayoutManager(this)
+        val plantAdapter = PlantAdapter(this, getPlantsList())
+        rvPlantsList.adapter = plantAdapter
 
+    }
+    private fun getPlantsList(): ArrayList<String> {
+        val list = ArrayList<String>()
+
+        list.add("Plant One")
+        list.add("Plant Two")
+        list.add("Plant Three")
+        list.add("Plant Four")
+        list.add("Plant Five")
+        list.add("Plant Six")
+        list.add("Plant Seven")
+        list.add("Plant Eight")
+        list.add("Plant Nine")
+        list.add("Plant Ten")
+        list.add("Plant Eleven")
+        return list
     }
 }
