@@ -14,17 +14,17 @@ class PlantAdapter(val context: Context, val plants: ArrayList<String>) :
     override fun onBindViewHolder(holder: PlantAdapter.ViewHolder, position: Int) {
         val plant = plants[position]
 
-        holder.tvPlant.text = plant
+        holder.cardTvPlant.text = plant
 
         if (position % 2 == 0) {
-            holder.tvPlant.setBackgroundColor(
+            holder.cardTvPlant.setBackgroundColor(
                 ContextCompat.getColor(
                     context,
                     R.color.colorLightGray
                 )
             )
         } else {
-            holder.tvPlant.setBackgroundColor(
+            holder.cardTvPlant.setBackgroundColor(
                 ContextCompat.getColor(
                     context,
                     R.color.colorWhite
@@ -48,6 +48,6 @@ class PlantAdapter(val context: Context, val plants: ArrayList<String>) :
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvPlant = view.tvPlant
+        val cardTvPlant = view.cardTvPlant
     }
 }
