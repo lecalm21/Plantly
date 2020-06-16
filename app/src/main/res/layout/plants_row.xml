@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardPlant"
+        android:layout_width="160dp"
+        android:layout_height="192dp"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/cardImagePlant"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="TODO"/>
+
+            <TextView
+                android:id="@+id/cardTvPlant"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@android:color/black"
+                android:padding="16dp"
+                android:textSize="16sp"
+                android:text="Plant" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+</LinearLayout>
