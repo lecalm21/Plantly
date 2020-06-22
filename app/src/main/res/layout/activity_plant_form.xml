@@ -12,6 +12,9 @@
         android:padding="16dp">
 
         <ImageView
+            android:id="@+id/ivTakePhoto"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:background="@drawable/take_picture_iv"
