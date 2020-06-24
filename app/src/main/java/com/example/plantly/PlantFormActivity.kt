@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import kotlinx.android.synthetic.main.activity_plant_form.*
@@ -66,7 +67,9 @@ class PlantFormActivity : AppCompatActivity() {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             ivTakePhoto.setImageBitmap(imageBitmap)
-        }
+        } else Toast.makeText(this,
+            "Photo file can't be saved, please try again",
+            Toast.LENGTH_SHORT).show();
     }
 
     override fun onBackPressed() {
