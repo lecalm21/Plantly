@@ -22,7 +22,6 @@ import java.util.*
 class PlantFormActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 1
     private lateinit var currentPhotoPath: String
-    //private lateinit var photoURI: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,7 +74,7 @@ class PlantFormActivity : AppCompatActivity() {
             Toast.makeText(this,
                 "Photo file is saved",
                 Toast.LENGTH_SHORT).show()
-            //ivTakePhoto.setImageDrawable(Drawable.createFromPath(photoURI.toString()))
+            ivTakePhoto.setImageDrawable(Drawable.createFromPath(currentPhotoPath))
         } else Toast.makeText(this,
             "Photo file can't be saved, please try again",
             Toast.LENGTH_SHORT).show()

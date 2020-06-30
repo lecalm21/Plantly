@@ -49,6 +49,7 @@
         android:layout_marginTop="16dp">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvWaterReminder"
             android:layout_width="120dp"
             android:layout_height="80dp"
             app:cardBackgroundColor="@color/colorLightGray"
