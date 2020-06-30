@@ -3,6 +3,7 @@ package com.example.plantly
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -21,6 +22,7 @@ import java.util.*
 class PlantFormActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 1
     private lateinit var currentPhotoPath: String
+    //private lateinit var photoURI: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,8 +72,10 @@ class PlantFormActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            ivTakePhoto.setImageBitmap(imageBitmap)
+            Toast.makeText(this,
+                "Photo file is saved",
+                Toast.LENGTH_SHORT).show()
+            //ivTakePhoto.setImageDrawable(Drawable.createFromPath(photoURI.toString()))
         } else Toast.makeText(this,
             "Photo file can't be saved, please try again",
             Toast.LENGTH_SHORT).show()
@@ -88,7 +92,6 @@ class PlantFormActivity : AppCompatActivity() {
     private fun createImageFile(): File {
         // Create an image file name
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        // has bug
         val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile(
             "JPEG_${timeStamp}_", /* prefix */
