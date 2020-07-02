@@ -36,7 +36,6 @@ class PlantFormActivity : AppCompatActivity() {
             finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
-
         //Won't use this now. maybe later
         /*
         cvWaterReminder.setOnClickListener() {
