@@ -1,7 +1,9 @@
 package com.example.plantly
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -10,16 +12,19 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.activity_plant_form.*
+import kotlinx.android.synthetic.main.water_reminder_dialog_fragment.*
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 class PlantFormActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 1
-
     private lateinit var currentPhotoPath: String
+    var numberWaterDays : Int = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +36,34 @@ class PlantFormActivity : AppCompatActivity() {
             finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
+        //Won't use this now. maybe later
+        /*
+        cvWaterReminder.setOnClickListener() {
+            val fm = supportFragmentManager
+            val waterReminder = WaterReminderDialogFragment()
+            waterReminder.show(fm, "dialog")
+        }
+         */
+        tvNumberWaterDays.text = numberWaterDays.toString()
+
+        btnAddDays.setOnClickListener() {
+            numberWaterDays ++
+            tvNumberWaterDays.text = numberWaterDays.toString()
+        }
+
+        btnRemoveDays.setOnClickListener() {
+            if (numberWaterDays == 1)
+            else {
+                numberWaterDays --
+                tvNumberWaterDays.text = numberWaterDays.toString()
+            }
+        }
 
         ivTakePhoto.setOnClickListener {
-            dispatchTakePictureIntent()
+           dispatchTakePictureIntent()
         }
+
+
     }
 
     private fun dispatchTakePictureIntent() {
@@ -63,16 +92,17 @@ class PlantFormActivity : AppCompatActivity() {
         }
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            ivTakePhoto.setImageBitmap(imageBitmap)
-        } else {
             Toast.makeText(this,
-                "Photo file can't be saved, please try again",
+                "Photo file is saved",
                 Toast.LENGTH_SHORT).show()
-        }
+            ivTakePhoto.setImageDrawable(Drawable.createFromPath(currentPhotoPath))
+        } else Toast.makeText(this,
+            "Photo file can't be saved, please try again",
+            Toast.LENGTH_SHORT).show()
     }
 
     override fun onBackPressed() {
