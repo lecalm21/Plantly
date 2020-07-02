@@ -2,13 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardPlant"
         android:layout_width="160dp"
         android:layout_height="192dp"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+        android:clickable="true"
+        app:cardElevation="4dp">
+
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ivTakePhoto"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@drawable/take_picture_iv"
+            android:src="@drawable/ic_camera_24"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Plant Name"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal"
+
+            >
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvWaterReminder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/colorLightGray"
+        app:cardElevation="4dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Water Reminder"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="24dp"
+                android:padding="8dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Water Every "/>
+                <ImageButton
+                    android:id="@+id/btnRemoveDays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_remove_circle_24"
+                    />
+                <TextView
+                    android:id="@+id/tvNumberWaterDays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    android:layout_marginHorizontal="4dp"/>
+                <ImageButton
+                    android:id="@+id/btnAddDays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_add_circle_24"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text=" Days"/>
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <Button
+        android:id="@+id/btnAddPlant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Plant"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@drawable/plantly_button"
+        />
+
+</LinearLayout>
