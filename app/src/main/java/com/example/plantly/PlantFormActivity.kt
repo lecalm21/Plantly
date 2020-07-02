@@ -12,6 +12,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.activity_plant_form.*
 import java.io.File
 import java.io.IOException
@@ -33,7 +34,12 @@ class PlantFormActivity : AppCompatActivity() {
             finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
+        cvWaterReminder.setOnClickListener() {
+            val fm = supportFragmentManager
+            val waterReminder = WaterReminderDialogFragment()
+            waterReminder.show(fm, "dialog")
 
+        }
 
         ivTakePhoto.setOnClickListener {
            dispatchTakePictureIntent()
