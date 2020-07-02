@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.activity_plant_form.*
+import kotlinx.android.synthetic.main.water_reminder_dialog_fragment.*
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -23,6 +24,7 @@ import java.util.*
 class PlantFormActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 1
     private lateinit var currentPhotoPath: String
+    var numberWaterDays : Int = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,16 +36,34 @@ class PlantFormActivity : AppCompatActivity() {
             finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
+
+        //Won't use this now. maybe later
+        /*
         cvWaterReminder.setOnClickListener() {
             val fm = supportFragmentManager
             val waterReminder = WaterReminderDialogFragment()
             waterReminder.show(fm, "dialog")
+        }
+         */
+        tvNumberWaterDays.text = numberWaterDays.toString()
 
+        btnAddDays.setOnClickListener() {
+            numberWaterDays ++
+            tvNumberWaterDays.text = numberWaterDays.toString()
+        }
+
+        btnRemoveDays.setOnClickListener() {
+            if (numberWaterDays == 1)
+            else {
+                numberWaterDays --
+                tvNumberWaterDays.text = numberWaterDays.toString()
+            }
         }
 
         ivTakePhoto.setOnClickListener {
            dispatchTakePictureIntent()
         }
+
 
     }
 

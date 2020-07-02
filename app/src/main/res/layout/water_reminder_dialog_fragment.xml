@@ -15,7 +15,6 @@
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal">
         <ImageButton
-            android:id="@+id/btnAddDays"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_add_circle_24"
@@ -25,14 +24,12 @@
             android:layout_height="match_parent"
             android:text="3"/>
         <ImageButton
-            android:id="@+id/btnRemoveDays"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_remove_circle_24"
             />
     </LinearLayout>
     <TextView
-        android:id="@+id/tvNumberWaterDays"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="Days"
