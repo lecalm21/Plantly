@@ -31,6 +31,9 @@ class PlantFormActivity : AppCompatActivity() {
         setContentView(R.layout.activity_plant_form)
 
         btnAddPlant.setOnClickListener {
+            //DB connection
+            //val dbHelper = FeedReaderDbHelper(context)
+
             val intent = Intent(this@PlantFormActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
