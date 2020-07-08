@@ -1,5 +1,6 @@
 package com.example.plantly
 
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -32,7 +33,21 @@ class PlantFormActivity : AppCompatActivity() {
 
         btnAddPlant.setOnClickListener {
             //DB connection
-            //val dbHelper = FeedReaderDbHelper(context)
+            val dbHelper = FeedReaderDbHelper(context)
+            // Gets the data repository in write mode
+            val db = dbHelper.writableDatabase
+
+            val plantName: String = tiPlantName.text.toString()
+            val daysTillWater: Int = tvNumberWaterDays.text.toString().toInt()
+            // Create a new map of values, where column names are the keys
+            val values = ContentValues().apply {
+                put(FeedReaderContract.FeedEntry.COLUMN_NAME_PHOTO_PATH, currentPhotoPath)
+                put(FeedReaderContract.FeedEntry.COLUMN_NAME_PLANT_NAME, plantName)
+                put(FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER, daysTillWater)
+            }
+
+            // Insert the new row, returning the primary key value of the new row
+            val newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values)
 
             val intent = Intent(this@PlantFormActivity, MainActivity::class.java)
             startActivity(intent)
