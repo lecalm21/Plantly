@@ -22,7 +22,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+}
 
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
 }
 
 dependencies {
