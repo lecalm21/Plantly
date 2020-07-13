@@ -27,20 +27,10 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    private fun getPlantsList(): ArrayList<String> {
-        val list = ArrayList<String>()
+    private fun getPlantsList(): ArrayList<Plant> {
+        val list = ArrayList<Plant>()
 
-        list.add("Plant One")
-        list.add("Plant Two")
-        list.add("Plant Three")
-        list.add("Plant Four")
-        list.add("Plant Five")
-        list.add("Plant Six")
-        list.add("Plant Seven")
-        list.add("Plant Eight")
-        list.add("Plant Nine")
-        list.add("Plant Ten")
-        list.add("Plant Eleven")
+
         return list
     }
 

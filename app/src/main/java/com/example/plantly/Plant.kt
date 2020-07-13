@@ -1,4 +1,3 @@
 package com.example.plantly
 
-class Plant {
-}
+data class Plant(val id: Int, val photoPath: String, val plantName: String, val daysTillWater: Int)

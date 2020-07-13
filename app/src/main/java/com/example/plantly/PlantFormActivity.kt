@@ -32,13 +32,13 @@ class PlantFormActivity : AppCompatActivity() {
         setContentView(R.layout.activity_plant_form)
 
         btnAddPlant.setOnClickListener {
+            val plantName: String = tiPlantName.text.toString()
+            val daysTillWater: Int = tvNumberWaterDays.text.toString().toInt()
             //DB connection
-            val dbHelper = FeedReaderDbHelper(context)
+            val dbHelper = FeedReaderDbHelper(applicationContext)
             // Gets the data repository in write mode
             val db = dbHelper.writableDatabase
 
-            val plantName: String = tiPlantName.text.toString()
-            val daysTillWater: Int = tvNumberWaterDays.text.toString().toInt()
             // Create a new map of values, where column names are the keys
             val values = ContentValues().apply {
                 put(FeedReaderContract.FeedEntry.COLUMN_NAME_PHOTO_PATH, currentPhotoPath)
