@@ -33,7 +33,6 @@ class PlantFormActivity : AppCompatActivity() {
 
         btnAddPlant.setOnClickListener {
             val plantName: String = tiPlantName.text.toString()
-            val daysTillWater: Int = tvNumberWaterDays.text.toString().toInt()
             //DB connection
             val dbHelper = FeedReaderDbHelper(applicationContext)
             // Gets the data repository in write mode
@@ -43,7 +42,7 @@ class PlantFormActivity : AppCompatActivity() {
             val values = ContentValues().apply {
                 put(FeedReaderContract.FeedEntry.COLUMN_NAME_PHOTO_PATH, currentPhotoPath)
                 put(FeedReaderContract.FeedEntry.COLUMN_NAME_PLANT_NAME, plantName)
-                put(FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER, daysTillWater)
+                put(FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER, numberWaterDays)
             }
 
             // Insert the new row, returning the primary key value of the new row
