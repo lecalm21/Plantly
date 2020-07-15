@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
                 android:scaleType="centerCrop"
-                android:contentDescription="TODO"/>
+                android:contentDescription="@string/rv_iv_description"/>
 
             <TextView
                 android:id="@+id/cardTvPlant"

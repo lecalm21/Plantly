@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/fab_content_description"
             app:srcCompat="@drawable/ic_plus_24"
             app:fabSize="normal"/>
 
