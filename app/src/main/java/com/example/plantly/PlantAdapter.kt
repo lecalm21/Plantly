@@ -5,9 +5,7 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_plant_form.*
 import kotlinx.android.synthetic.main.plants_row.view.*
 
 class PlantAdapter(val context: Context, val plants: ArrayList<Plant>) :
