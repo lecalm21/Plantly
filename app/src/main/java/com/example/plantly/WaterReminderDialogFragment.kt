@@ -30,3 +30,4 @@ class WaterReminderDialogFragment : DialogFragment() {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 }
+

@@ -1,5 +1,6 @@
 package com.example.plantly
 
+
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
@@ -27,6 +28,7 @@ class PlantFormActivity : AppCompatActivity() {
     private lateinit var currentPhotoPath: String
     var daysTillWater : Int = 3
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plant_form)
@@ -47,7 +49,7 @@ class PlantFormActivity : AppCompatActivity() {
 
             // Insert the new row, returning the primary key value of the new row
             val newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values)
-
+          
             val intent = Intent(this@PlantFormActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
