@@ -25,7 +25,7 @@ import java.util.*
 class PlantFormActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 1
     private lateinit var currentPhotoPath: String
-    var numberWaterDays : Int = 3
+    var daysTillWater : Int = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +42,7 @@ class PlantFormActivity : AppCompatActivity() {
             val values = ContentValues().apply {
                 put(FeedReaderContract.FeedEntry.COLUMN_NAME_PHOTO_PATH, currentPhotoPath)
                 put(FeedReaderContract.FeedEntry.COLUMN_NAME_PLANT_NAME, plantName)
-                put(FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER, numberWaterDays)
+                put(FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER, daysTillWater)
             }
 
             // Insert the new row, returning the primary key value of the new row
@@ -61,18 +61,18 @@ class PlantFormActivity : AppCompatActivity() {
             waterReminder.show(fm, "dialog")
         }
          */
-        tvNumberWaterDays.text = numberWaterDays.toString()
+        tvNumberWaterDays.text = daysTillWater.toString()
 
         btnAddDays.setOnClickListener() {
-            numberWaterDays ++
-            tvNumberWaterDays.text = numberWaterDays.toString()
+            daysTillWater ++
+            tvNumberWaterDays.text = daysTillWater.toString()
         }
 
         btnRemoveDays.setOnClickListener() {
-            if (numberWaterDays == 1)
+            if (daysTillWater == 1)
             else {
-                numberWaterDays --
-                tvNumberWaterDays.text = numberWaterDays.toString()
+                daysTillWater --
+                tvNumberWaterDays.text = daysTillWater.toString()
             }
         }
 

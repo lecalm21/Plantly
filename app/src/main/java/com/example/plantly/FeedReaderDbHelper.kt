@@ -12,7 +12,7 @@ class FeedReaderDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         "CREATE TABLE ${FeedReaderContract.FeedEntry.TABLE_NAME} (" +
                 "${BaseColumns._ID} INTEGER PRIMARY KEY," +
                 "${FeedReaderContract.FeedEntry.COLUMN_NAME_PHOTO_PATH} TEXT," +
-                "${FeedReaderContract.FeedEntry.COLUMN_NAME_PLANT_NAME} TEXT" +
+                "${FeedReaderContract.FeedEntry.COLUMN_NAME_PLANT_NAME} TEXT," +
                 "${FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER} INTEGER)"
 
     private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS ${FeedReaderContract.FeedEntry.TABLE_NAME}"

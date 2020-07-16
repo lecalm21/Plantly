@@ -36,8 +36,9 @@ class MainActivity : AppCompatActivity() {
         val projection = arrayOf(BaseColumns._ID, FeedReaderContract.FeedEntry.COLUMN_NAME_PHOTO_PATH,
             FeedReaderContract.FeedEntry.COLUMN_NAME_PLANT_NAME, FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER)
 
+
         // How you want the results sorted in the resulting Cursor
-        val sortOrder = "${FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER} ASC"
+        //val sortOrder = "${FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER} ASC"
 
         val cursor = db.query(
             FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             null,          // The values for the WHERE clause
             null,                   // don't group the rows
             null,                   // don't filter by row groups
-            sortOrder               // The sort order
+            null               // The sort order
         )
         val list = ArrayList<Plant>()
         with(cursor) {
