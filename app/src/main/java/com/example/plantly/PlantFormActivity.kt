@@ -1,5 +1,7 @@
 package com.example.plantly
 
+
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -24,13 +26,30 @@ import java.util.*
 class PlantFormActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 1
     private lateinit var currentPhotoPath: String
-    var numberWaterDays : Int = 3
+    var daysTillWater : Int = 3
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plant_form)
 
         btnAddPlant.setOnClickListener {
+            val plantName: String = tiPlantName.text.toString()
+            //DB connection
+            val dbHelper = FeedReaderDbHelper(applicationContext)
+            // Gets the data repository in write mode
+            val db = dbHelper.writableDatabase
+
+            // Create a new map of values, where column names are the keys
+            val values = ContentValues().apply {
+                put(FeedReaderContract.FeedEntry.COLUMN_NAME_PHOTO_PATH, currentPhotoPath)
+                put(FeedReaderContract.FeedEntry.COLUMN_NAME_PLANT_NAME, plantName)
+                put(FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER, daysTillWater)
+            }
+
+            // Insert the new row, returning the primary key value of the new row
+            val newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values)
+          
             val intent = Intent(this@PlantFormActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
@@ -44,18 +63,18 @@ class PlantFormActivity : AppCompatActivity() {
             waterReminder.show(fm, "dialog")
         }
          */
-        tvNumberWaterDays.text = numberWaterDays.toString()
+        tvNumberWaterDays.text = daysTillWater.toString()
 
         btnAddDays.setOnClickListener() {
-            numberWaterDays ++
-            tvNumberWaterDays.text = numberWaterDays.toString()
+            daysTillWater ++
+            tvNumberWaterDays.text = daysTillWater.toString()
         }
 
         btnRemoveDays.setOnClickListener() {
-            if (numberWaterDays == 1)
+            if (daysTillWater == 1)
             else {
-                numberWaterDays --
-                tvNumberWaterDays.text = numberWaterDays.toString()
+                daysTillWater --
+                tvNumberWaterDays.text = daysTillWater.toString()
             }
         }
 

@@ -2,4 +2,10 @@
     <string name="app_name">Plantly</string>
     <string name="apply">Apply</string>
     <string name="cancel">Cancel</string>
+    <string name="plant_name_hint">Plant Name</string>
+    <string name="water_reminder">Water Reminder</string>
+    <string name="water_every">Water every </string>
+    <string name="days"> Days</string>
+    <string name="fab_content_description">Add Another Plant</string>
+    <string name="rv_iv_description">Plant Image</string>
 </resources>

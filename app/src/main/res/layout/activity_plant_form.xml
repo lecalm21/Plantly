@@ -24,15 +24,14 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Plant Name"
+            android:hint="@string/plant_name_hint"
             android:padding="16dp"
             android:layout_marginTop="16dp"
-            android:layout_gravity="center_horizontal"
-
-            >
+            android:layout_gravity="center_horizontal">
 
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiPlantName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
@@ -58,7 +57,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Water Reminder"
+                android:text="@string/water_reminder"
                 android:textColor="@android:color/holo_blue_light"
                 android:textSize="24dp"
                 android:padding="8dp"
@@ -71,7 +70,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Water Every "/>
+                    android:text="@string/water_every"/>
                 <ImageButton
                     android:id="@+id/btnRemoveDays"
                     android:layout_width="wrap_content"
@@ -93,7 +92,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text=" Days"/>
+                    android:text="@string/days"/>
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
