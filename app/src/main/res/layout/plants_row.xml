@@ -7,33 +7,53 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardPlant"
-        android:layout_width="160dp"
-        android:layout_height="192dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:clickable="true"
         app:cardElevation="4dp">
-
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/cardTvPlant"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@android:color/black"
+                    android:padding="8dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="" />
+                <TextView
+                    android:id="@+id/databaseID"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text=""/>
+                <ImageView
+                    android:id="@+id/cardIvPlant"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/rv_iv_description"/>
+            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/cardIvPlant"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:scaleType="centerCrop"
-                android:contentDescription="@string/rv_iv_description"/>
-
-            <TextView
-                android:id="@+id/cardTvPlant"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@android:color/black"
-                android:padding="16dp"
-                android:textSize="16sp"
-                android:text="Plant" />
+            <ImageButton
+                android:id="@+id/openMenu"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="@drawable/ic_more_vert_24"
+                android:onClick="showPopup"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

@@ -51,14 +51,6 @@ class PlantFormActivity : AppCompatActivity() {
             finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
-        //Won't use this now. maybe later
-        /*
-        cvWaterReminder.setOnClickListener() {
-            val fm = supportFragmentManager
-            val waterReminder = WaterReminderDialogFragment()
-            waterReminder.show(fm, "dialog")
-        }
-         */
         tvNumberWaterDays.text = daysTillWater.toString()
 
         btnAddDays.setOnClickListener() {

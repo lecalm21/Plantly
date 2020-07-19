@@ -8,4 +8,7 @@
     <string name="days"> Days</string>
     <string name="fab_content_description">Add Another Plant</string>
     <string name="rv_iv_description">Plant Image</string>
+    <string name="delete_plant">Delete</string>
+    <string name="water">Water</string>
+    <string name="edit_plant">Edit</string>
 </resources>
