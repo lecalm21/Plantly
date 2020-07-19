@@ -11,4 +11,5 @@
     <string name="delete_plant">Delete</string>
     <string name="water">Water</string>
     <string name="edit_plant">Edit</string>
+    <string name="days_left">Days Left</string>
 </resources>
