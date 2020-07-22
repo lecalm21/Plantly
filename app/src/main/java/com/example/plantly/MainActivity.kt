@@ -60,9 +60,9 @@ class MainActivity : AppCompatActivity() {
                 val db = dbHelper.writableDatabase
                 val id: Int = databaseID.text.toString().toInt()
                 // Define 'where' part of query.
-                val selection = "${BaseColumns._ID} = $id"
+                val selection = "${BaseColumns._ID} LIKE ?"
                 // Specify arguments in placeholder order.
-                val selectionArgs = arrayOf("PhotoPath")
+                val selectionArgs = arrayOf(id.toString())
                 // Issue SQL statement.
                 val deletedRows = db.delete(FeedReaderContract.FeedEntry.TABLE_NAME, selection, selectionArgs)
                 true
