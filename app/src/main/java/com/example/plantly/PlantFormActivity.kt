@@ -44,7 +44,7 @@ class PlantFormActivity : AppCompatActivity() {
             }
 
             // Insert the new row, returning the primary key value of the new row
-            val newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values)
+            db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values)
           
             val intent = Intent(this@PlantFormActivity, MainActivity::class.java)
             startActivity(intent)
