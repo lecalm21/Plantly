@@ -1,11 +1,13 @@
 package com.example.plantly
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.BaseColumns
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.plants_row.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
@@ -23,11 +25,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, PlantFormActivity::class.java)
             startActivity(intent)
             finish()
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
 
     }
+
     private fun getPlantsList(): ArrayList<Plant> {
         val dbHelper = FeedReaderDbHelper(applicationContext)
         val db = dbHelper.readableDatabase
@@ -41,14 +43,15 @@ class MainActivity : AppCompatActivity() {
         //val sortOrder = "${FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER} ASC"
 
         val cursor = db.query(
-            FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
-            projection,             // The array of columns to return (pass null to get all)
-            null,              // The columns for the WHERE clause
-            null,          // The values for the WHERE clause
-            null,                   // don't group the rows
-            null,                   // don't filter by row groups
-            null               // The sort order
+            FeedReaderContract.FeedEntry.TABLE_NAME,
+            projection,
+            null,
+            null,
+            null,
+            null,
+            null
         )
+
         val list = ArrayList<Plant>()
         with(cursor) {
             while (moveToNext()) {
@@ -60,6 +63,4 @@ class MainActivity : AppCompatActivity() {
 
         return list
     }
-
-
 }

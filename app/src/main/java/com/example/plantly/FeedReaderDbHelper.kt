@@ -29,6 +29,16 @@ class FeedReaderDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
     override fun onDowngrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         onUpgrade(db, oldVersion, newVersion)
     }
+
+    fun delete(id: Int) {
+        val db = this.writableDatabase
+        // Define 'where' part of query.
+        val selection = "${BaseColumns._ID} = ?"
+        // Specify arguments in placeholder order.
+        val selectionArgs = arrayOf(id.toString())
+        // Issue SQL statement.
+        db.delete(FeedReaderContract.FeedEntry.TABLE_NAME, selection, selectionArgs)
+    }
     companion object {
         // If you change the database schema, you must increment the database version.
         const val DATABASE_VERSION = 1

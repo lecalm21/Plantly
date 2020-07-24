@@ -2,9 +2,7 @@ package com.example.plantly
 
 
 import android.content.ContentValues
-import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -14,9 +12,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.activity_plant_form.*
-import kotlinx.android.synthetic.main.water_reminder_dialog_fragment.*
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -48,21 +44,13 @@ class PlantFormActivity : AppCompatActivity() {
             }
 
             // Insert the new row, returning the primary key value of the new row
-            val newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values)
+            db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values)
           
             val intent = Intent(this@PlantFormActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
-        //Won't use this now. maybe later
-        /*
-        cvWaterReminder.setOnClickListener() {
-            val fm = supportFragmentManager
-            val waterReminder = WaterReminderDialogFragment()
-            waterReminder.show(fm, "dialog")
-        }
-         */
         tvNumberWaterDays.text = daysTillWater.toString()
 
         btnAddDays.setOnClickListener() {
