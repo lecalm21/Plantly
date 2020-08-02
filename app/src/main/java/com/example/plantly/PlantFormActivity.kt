@@ -1,17 +1,22 @@
 package com.example.plantly
 
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.SystemClock
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import com.example.application.alarmmanagerproject.AlertReceiver
 import kotlinx.android.synthetic.main.activity_plant_form.*
 import java.io.File
 import java.io.IOException
@@ -30,6 +35,13 @@ class PlantFormActivity : AppCompatActivity() {
         setContentView(R.layout.activity_plant_form)
 
         btnAddPlant.setOnClickListener {
+
+            val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val alarmIntent = Intent(this, AlertReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(this, 1, alarmIntent, 0)
+            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_DAY, AlarmManager.INTERVAL_DAY, pendingIntent)
+
             val plantName: String = tiPlantName.text.toString()
             //DB connection
             val dbHelper = FeedReaderDbHelper(applicationContext)
@@ -41,6 +53,7 @@ class PlantFormActivity : AppCompatActivity() {
                 put(FeedReaderContract.FeedEntry.COLUMN_NAME_PHOTO_PATH, currentPhotoPath)
                 put(FeedReaderContract.FeedEntry.COLUMN_NAME_PLANT_NAME, plantName)
                 put(FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER, daysTillWater)
+                put(FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER_COUNTDOWN, daysTillWater)
             }
 
             // Insert the new row, returning the primary key value of the new row
