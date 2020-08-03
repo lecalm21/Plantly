@@ -26,7 +26,7 @@ import java.util.*
 
 class PlantFormActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 1
-    private lateinit var currentPhotoPath: String
+    private var currentPhotoPath: String = ""
     var daysTillWater : Int = 3
 
 
@@ -47,22 +47,35 @@ class PlantFormActivity : AppCompatActivity() {
             val dbHelper = FeedReaderDbHelper(applicationContext)
             // Gets the data repository in write mode
             val db = dbHelper.writableDatabase
+            if (currentPhotoPath == "" && plantName == "") {
+                Toast.makeText(applicationContext,
+                    String.format("Please Add a Photo And a Name"),
+                    Toast.LENGTH_SHORT).show()
+            } else if (currentPhotoPath == "") {
+                Toast.makeText(applicationContext,
+                    String.format("Please Add a Photo"),
+                    Toast.LENGTH_SHORT).show()
+            } else if (plantName == "") {
+                Toast.makeText(applicationContext,
+                    String.format("Please Add a Name"),
+                    Toast.LENGTH_SHORT).show()
+            } else {
+                // Create a new map of values, where column names are the keys
+                val values = ContentValues().apply {
+                    put(FeedReaderContract.FeedEntry.COLUMN_NAME_PHOTO_PATH, currentPhotoPath)
+                    put(FeedReaderContract.FeedEntry.COLUMN_NAME_PLANT_NAME, plantName)
+                    put(FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER, daysTillWater)
+                    put(FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER_COUNTDOWN, daysTillWater)
+                }
 
-            // Create a new map of values, where column names are the keys
-            val values = ContentValues().apply {
-                put(FeedReaderContract.FeedEntry.COLUMN_NAME_PHOTO_PATH, currentPhotoPath)
-                put(FeedReaderContract.FeedEntry.COLUMN_NAME_PLANT_NAME, plantName)
-                put(FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER, daysTillWater)
-                put(FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER_COUNTDOWN, daysTillWater)
+                // Insert the new row, returning the primary key value of the new row
+                db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values)
+
+                val intent = Intent(this@PlantFormActivity, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             }
-
-            // Insert the new row, returning the primary key value of the new row
-            db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values)
-          
-            val intent = Intent(this@PlantFormActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
         tvNumberWaterDays.text = daysTillWater.toString()
 
