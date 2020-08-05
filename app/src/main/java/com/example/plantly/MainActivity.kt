@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        supportActionBar?.title = "Plant Overview"
+
         rvPlantsList.layoutManager = LinearLayoutManager(this)
         val plantAdapter = PlantAdapter(this, getPlantsList())
         rvPlantsList.adapter = plantAdapter
@@ -53,5 +55,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return list
+    }
+
+    fun invokeEditPlant(id: Int) {
+        val intent = Intent(this@MainActivity, PlantEditActivity::class.java)
+        intent.putExtra("arg", id)
+        startActivity(intent)
+        finish()
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+    companion object {
+        private val TAG = MainActivity::class.qualifiedName
     }
 }

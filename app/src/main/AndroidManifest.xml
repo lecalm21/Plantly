@@ -22,6 +22,9 @@
         <activity
             android:name=".PlantFormActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlantEditActivity"
+            android:screenOrientation="portrait" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.plantly.fileprovider"

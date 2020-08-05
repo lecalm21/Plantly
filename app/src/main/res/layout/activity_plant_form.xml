@@ -99,7 +99,7 @@
         android:id="@+id/btnAddPlant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Plant"
+        android:text="@string/add_plant"
         android:layout_marginTop="24dp"
         android:layout_gravity="bottom|center_horizontal"
         android:background="@drawable/plantly_button"
