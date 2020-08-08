@@ -1,4 +1,4 @@
-package com.example.application.alarmmanagerproject
+package com.example.plantly
 
 import android.content.BroadcastReceiver
 import android.content.ContentValues
@@ -6,9 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.provider.BaseColumns
 import androidx.core.app.NotificationCompat
-import com.example.plantly.FeedReaderContract
-import com.example.plantly.FeedReaderDbHelper
-import com.example.plantly.Plant
 
 class AlertReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {

@@ -16,7 +16,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import com.example.application.alarmmanagerproject.AlertReceiver
 import kotlinx.android.synthetic.main.activity_plant_form.*
 import java.io.File
 import java.io.IOException
