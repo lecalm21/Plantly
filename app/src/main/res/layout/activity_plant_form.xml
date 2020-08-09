@@ -28,6 +28,8 @@
             android:padding="16dp"
             android:layout_marginTop="16dp"
             android:layout_gravity="center_horizontal"
+            app:startIconDrawable="@drawable/ic_leaf_24"
+            app:startIconTint="@android:color/holo_green_light"
             >
 
             <com.google.android.material.textfield.TextInputEditText

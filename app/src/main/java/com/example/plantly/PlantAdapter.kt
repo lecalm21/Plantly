@@ -87,8 +87,8 @@ class PlantAdapter(private val context: Context, private val plants: ArrayList<P
             val intent = Intent(v.context, PlantEditActivity::class.java)
             intent.putExtra("arg", id)
             v.context.startActivity(intent)
-            //(context as Activity).finish()
-            //context.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            (context as Activity).finish()
+            context.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
         private fun waterPlant(v: View?) {
             val id = v?.tag as Int
