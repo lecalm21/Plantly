@@ -9,7 +9,10 @@
     <string name="fab_content_description">Add Another Plant</string>
     <string name="rv_iv_description">Plant Image</string>
     <string name="delete_plant">Delete</string>
+    <string name="delete_plant_content_description">Delete Plant</string>
+    <string name="edit_plant_content_description">Edit Plant</string>
     <string name="water">Water</string>
     <string name="edit_plant">Edit</string>
     <string name="days_left">Days Left</string>
+    <string name="add_plant">Add Plant</string>
 </resources>

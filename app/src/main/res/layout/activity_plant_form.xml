@@ -27,20 +27,19 @@
             android:hint="@string/plant_name_hint"
             android:padding="16dp"
             android:layout_marginTop="16dp"
-            android:layout_gravity="center_horizontal">
-
+            android:layout_gravity="center_horizontal"
+            app:startIconDrawable="@drawable/ic_leaf_24"
+            app:startIconTint="@android:color/holo_green_light"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiPlantName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="13"
                 />
-
         </com.google.android.material.textfield.TextInputLayout>
-
     </LinearLayout>
-
-
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvWaterReminder"
@@ -58,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/water_reminder"
-                android:textColor="@android:color/holo_blue_light"
+                android:textColor="@color/colorBlue"
                 android:textSize="24dp"
                 android:padding="8dp"
                 />
@@ -102,7 +101,7 @@
         android:id="@+id/btnAddPlant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Plant"
+        android:text="@string/add_plant"
         android:layout_marginTop="24dp"
         android:layout_gravity="bottom|center_horizontal"
         android:background="@drawable/plantly_button"

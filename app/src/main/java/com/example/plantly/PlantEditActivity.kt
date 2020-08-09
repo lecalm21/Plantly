@@ -1,16 +1,12 @@
 package com.example.plantly
 
-
-import android.app.AlarmManager
-import android.app.PendingIntent
 import android.content.ContentValues
-import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.os.SystemClock
+import android.provider.BaseColumns
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
@@ -23,7 +19,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class PlantFormActivity : AppCompatActivity() {
+class PlantEditActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 1
     private var currentPhotoPath: String = ""
     private var daysTillWater : Int = 3
@@ -33,51 +29,57 @@ class PlantFormActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plant_form)
 
-        supportActionBar?.title = "Add Plant"
+        supportActionBar?.title = "Update Plant"
+        var passedId = intent.extras!!.getInt("arg")
+        btnAddPlant.text = "Update Plant"
 
         btnAddPlant.setOnClickListener {
-
-            val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            val alarmIntent = Intent(this, AlertReceiver::class.java)
-            val pendingIntent = PendingIntent.getBroadcast(this, 1, alarmIntent, 0)
-            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_DAY, AlarmManager.INTERVAL_DAY, pendingIntent)
-
+            val dbHelper = FeedReaderDbHelper(applicationContext)
+            val db = dbHelper.writableDatabase
             val plantName: String = tiPlantName.text.toString()
             //DB connection
-            val dbHelper = FeedReaderDbHelper(applicationContext)
-            // Gets the data repository in write mode
-            val db = dbHelper.writableDatabase
+
             if (currentPhotoPath == "" && plantName == "") {
-                Toast.makeText(applicationContext,
+                Toast.makeText(
+                    applicationContext,
                     String.format("Please Add a Photo And a Name"),
-                    Toast.LENGTH_SHORT).show()
+                    Toast.LENGTH_SHORT
+                ).show()
             } else if (currentPhotoPath == "") {
-                Toast.makeText(applicationContext,
+                Toast.makeText(
+                    applicationContext,
                     String.format("Please Add a Photo"),
-                    Toast.LENGTH_SHORT).show()
+                    Toast.LENGTH_SHORT
+                ).show()
             } else if (plantName == "") {
-                Toast.makeText(applicationContext,
+                Toast.makeText(
+                    applicationContext,
                     String.format("Please Add a Name"),
-                    Toast.LENGTH_SHORT).show()
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
-                // Create a new map of values, where column names are the keys
                 val values = ContentValues().apply {
                     put(FeedReaderContract.FeedEntry.COLUMN_NAME_PHOTO_PATH, currentPhotoPath)
                     put(FeedReaderContract.FeedEntry.COLUMN_NAME_PLANT_NAME, plantName)
                     put(FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER, daysTillWater)
                     put(FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER_COUNTDOWN, daysTillWater)
                 }
+                val selection = "${BaseColumns._ID} = ?"
+                val selectionArgs = arrayOf(passedId.toString())
+                val count = db.update(
+                    FeedReaderContract.FeedEntry.TABLE_NAME,
+                    values,
+                    selection,
+                    selectionArgs
+                )
 
-                // Insert the new row, returning the primary key value of the new row
-                db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values)
-
-                val intent = Intent(this@PlantFormActivity, MainActivity::class.java)
+                val intent = Intent(this@PlantEditActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             }
         }
+
         tvNumberWaterDays.text = daysTillWater.toString()
 
         btnAddDays.setOnClickListener() {
@@ -94,8 +96,40 @@ class PlantFormActivity : AppCompatActivity() {
         }
 
         ivTakePhoto.setOnClickListener {
-           dispatchTakePictureIntent()
+            dispatchTakePictureIntent()
         }
+
+        val dbHelper = FeedReaderDbHelper(applicationContext)
+        val db = dbHelper.readableDatabase
+        val projection = arrayOf(BaseColumns._ID,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_PHOTO_PATH,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_PLANT_NAME,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER,
+            FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER_COUNTDOWN)
+        val selection = "${BaseColumns._ID} = ?"
+        val selectionArgs = arrayOf(passedId.toString())
+        val cursor = db.query(
+            FeedReaderContract.FeedEntry.TABLE_NAME, projection, selection, selectionArgs,
+            null, null, null
+        )
+        val list = ArrayList<Plant>()
+        with(cursor) {
+            while (moveToNext()) {
+                val plant = Plant(getInt(getColumnIndex(BaseColumns._ID)),
+                    getString(getColumnIndex(FeedReaderContract.FeedEntry.COLUMN_NAME_PHOTO_PATH)),
+                    getString(getColumnIndex(FeedReaderContract.FeedEntry.COLUMN_NAME_PLANT_NAME)),
+                    getInt(getColumnIndex(FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER)),
+                    getInt(getColumnIndex(
+                        FeedReaderContract.FeedEntry.COLUMN_NAME_DAYS_TILL_WATER_COUNTDOWN)
+                    ))
+                list.add(plant)
+            }
+        }
+        currentPhotoPath = list[0].photoPath
+        ivTakePhoto.setImageDrawable(Drawable.createFromPath(currentPhotoPath))
+        tiPlantName.setText(list[0].plantName)
+        daysTillWater = list[0].daysTillWater
+        tvNumberWaterDays.text = list[0].daysTillWater.toString()
 
 
     }
@@ -140,7 +174,7 @@ class PlantFormActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this@PlantFormActivity, MainActivity::class.java)
+        val intent = Intent(this@PlantEditActivity, MainActivity::class.java)
         startActivity(intent)
         finish()
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
